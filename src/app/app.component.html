@@ -10,7 +10,7 @@
         <ul class="dropdown-menu multi-level" aria-labelledby="dLabel" *ngIf="showDropDown">
           <li class="dropdown-submenu" *ngFor="let location of LocationList;let idx=index" (click)="locationClicked($event,idx)">
             <span>{{location.name}}</span>
-            <div class="dropdown-menu" *ngIf="location && location.branches && location.branches.length && locationIndex == idx ">
+            <div class="dropdown-menu" *ngIf="location && location.branches && location.branches.length && showSecondCombo && locationIndex == idx ">
               <ul *ngFor="let branch of location.branches;let index=index" >
                 <li (click)="branchClicked(idx,index)"><span>{{branch.name}}</span></li>
               </ul>
@@ -30,19 +30,20 @@
         <span (click)="goBack()">
           Equipment Catalog 
         </span>
-        <span *ngIf="currentCategory">
+        <span *ngIf="currentCategory" style="font-weight: 700;">
           / {{currentCategory}}
         </span>
       </div>
       <div class="box" *ngFor="let data of categories;let id=index">
         <div class="img">
-          <img src="../assets/category/{{data.image}}" alt="" onerror="this.style.display='none'">
-          <img src="../assets/category/subcategory/{{data.image}}" alt="" onerror="this.style.display='none'">
+          <img *ngIf="!currentCategory && data.image" src="../assets/category/{{data.image}}" alt="" onerror="this.style.display='none'">
+          <img *ngIf="currentCategory && data.image" src="../assets/category/subcategory/{{data.image}}" alt="" onerror="this.style.display='none'">
         </div>
-        <div class="label" (click)="linkClicked(data.name,id)">
+        <div class="label flex-center" (click)="linkClicked(data.name,id)">
           <a>
             {{data.name}}
           </a>
+          <i *ngIf="!currentCategory" class="material-icons">play_arrow</i>
         </div>
       </div>
     </div>

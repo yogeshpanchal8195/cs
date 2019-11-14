@@ -42,20 +42,25 @@
     }
     .body{
         margin: 60px 0 80px 0;
-        width: 100%;   
-        min-height: calc(100vh - 140px);
+        width: 100%; 
+        overflow: auto;  
+        height: calc(100vh - 140px);
         .banner{
             height: -webkit-fill-available;
             flex-direction: column;
         }
         .lbl{
             padding: 28px 0 0 28px;
+            span{
+                cursor: pointer;
+                font-size: 16px;
+            }
         }
         .box{
             height: 340px;
             display: inline-block;
             width: 300px;
-            border: 1px solid #c7c7ae;
+            border: 1px solid #216bac;
             margin: 28px 0 0 28px;
             .img{
                 height: 300px;
@@ -68,10 +73,18 @@
             .label{
                 height: 40px;
                 cursor: pointer;
-                background-color: darkgrey;
+                background-color: #216bac;
+                color: white;
                 text-align: center;
                 padding: 8px;
                 font-size: 16px;
+                a{
+                    color: white;
+                    font-size: 700;
+                }
+                i{
+                    transform: scale(0.6);
+                }
             }
         }
         .box:hover{

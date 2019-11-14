@@ -13,7 +13,8 @@ export class AppComponent implements OnInit {
   locationIndex:number=-1;
   branchIndex:number=-1;
   showDropDown:boolean=false;
-  currentCategory:string=""
+  currentCategory:string="";
+  showSecondCombo:boolean=false;
   selectedLocation:string="SELECT LOCATION"
   LocationList:Array<LocationModel>=[];
   categories:Array<CategoryModel>=[]
@@ -39,22 +40,26 @@ export class AppComponent implements OnInit {
   }
 
   locationClicked($event,index:number){
-    this.locationIndex=index
+    this.locationIndex=index;
+    this.showSecondCombo=true;
     $event.stopPropagation();
   }
 
   selectLocation($event){
-    this.showDropDown=true
+    this.showDropDown=true;
+    this.showSecondCombo=false;
     $event.stopPropagation();
   }
 
   bodyClicked($event){
     this.showDropDown=false;
+    this.showSecondCombo=false;
   }
 
   branchClicked(idx,index){
     this.showDropDown=false;
     this.branchIndex=index;
+    this.showSecondCombo=false;
     this.selectedLocation=this.LocationList[idx].name;
     this.categories=this.LocationList[idx].branches[index].categories;
   }
